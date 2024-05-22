@@ -4,7 +4,8 @@ const auth = useAuth()
 
 <template>
     <nav v-if="auth.loggedIn" class="flex justify-between items-center">
-        <NuxtLink to="/"><img :src="`/logo.png`" alt=""></NuxtLink>
+        <NuxtLink v-if="$route.path === '/'" to="/profile"><img :src="`./logo.png`" alt=""></NuxtLink>
+        <NuxtLink v-else to="/"><img :src="`./logo.png`" alt=""></NuxtLink>
         <NuxtLink to="/api/logout" external>
             <button class="bg-[#fd1c1c] text-white px-5 py-1 w-fit font-[Arimo] text-[16px] rounded-md">
                 Logout
