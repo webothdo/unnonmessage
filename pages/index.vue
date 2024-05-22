@@ -10,8 +10,11 @@
                         class="font-['Noto_Sans'] italic bg-clip-text text-transparent bg-gradient-to-r from-[#fd1c5c] to-[#f8fe3e]">anonymous</span>
                     Messages</h2>
             </div>
-            <button class="bg-[#fd1c5c] text-white px-7 py-2 w-fit font-[Arimo] text-[21px] rounded-md">Get
-                Started</button>
+            <NuxtLink to="/api/register" external>
+                <button class="bg-[#fd1c5c] text-white px-7 py-2 w-fit font-[Arimo] text-[21px] rounded-md">
+                    Get Started
+                </button>
+            </NuxtLink>
         </section>
         <section id="bottom-section" class="flex flex-col items-center gap-20">
             <div class="w-[250px] h-[150px]  mt-20 bg-white rounded-xl flex flex-col justify-between px-5 py-3">
