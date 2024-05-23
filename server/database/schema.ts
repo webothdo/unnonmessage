@@ -4,6 +4,7 @@ import { text, sqliteTable } from "drizzle-orm/sqlite-core";
 export const profile = sqliteTable("profile", {
   id: text("id").primaryKey(),
   username: text("username").notNull(),
+  userId: text("user_id").notNull().unique(),
 });
 
 export const message = sqliteTable("message", {

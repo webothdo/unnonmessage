@@ -3,14 +3,23 @@ definePageMeta({
     middleware: "auth-logged-in"
 })
 
-const client = useKindeClient()
 const auth = useAuth()
 
 console.log(auth)
 console.log(auth.user.id)
 
-onMounted(() => {
+onMounted(async () => {
     console.log("moounted", auth.user.id)
+    const data = await $fetch("/api/profile/getuserprofile", {
+        method: "GET",
+        query: {
+            id: auth.user.id
+        }
+    })
+    if (!data) {
+        navigateTo("/onboard")
+    }
+    console.log(data)
 })
 
 </script>
