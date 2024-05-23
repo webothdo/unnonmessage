@@ -7,15 +7,22 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "dgenerate": "drizzle-kit generate",
+    "dmigrate": "drizzle-kit migrate"
   },
   "dependencies": {
+    "@libsql/client": "^0.6.0",
     "@logto/nuxt": "^0.1.11",
     "@nuxt/fonts": "^0.7.0",
     "@nuxtjs/kinde": "^0.1.10",
     "@nuxtjs/tailwindcss": "^6.12.0",
+    "drizzle-orm": "^0.30.10",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.21.4"
   }
 }
