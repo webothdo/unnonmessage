@@ -2,10 +2,30 @@
 
 const query = useRoute().query
 const textAreaRef = ref('')
+const loading = ref(false)
 
-onMounted(() => {
-    console.log(textAreaRef.value)
+watch(() => textAreaRef.value, () => {
+    if (textAreaRef.value.length >= 250) {
+        textAreaRef.value = textAreaRef.value.slice(0, 250)
+    }
 })
+
+const createMessage = async () => {
+    loading.value = true
+    try {
+        const data = await $fetch("/api/message/create", {
+            method: "POST",
+            body: {
+                id: query.id,
+                message: textAreaRef.value
+            }
+        })
+        console.log("from message", data)
+    } catch (error) {
+        console.log("from message", error)
+    }
+    loading.value = false
+}
 
 </script>
 
@@ -16,8 +36,9 @@ onMounted(() => {
                 class="rounded-md py-5 px-4 w-[260px] h-[190px] resize-none focus:outline-none font-[Arimo] text-base text-[#1F000A]">What yu say</textarea>
             <p class="self-end mr-3 font-[Arimo] text-[13px] text-[#474747]">{{ textAreaRef.length }} / 250</p>
         </div>
-        <button class="bg-[#fd1c5c] text-white px-7 py-1 w-full font-[Arimo] text-[21px] rounded-md">
-            Send
+        <button :disabled="loading" @click="createMessage"
+            class="bg-[#fd1c5c] text-white px-7 py-1 w-full font-[Arimo] text-[21px] rounded-md">
+            {{ loading ? "Sending..." : "Send" }}
         </button>
     </div>
 </template>
