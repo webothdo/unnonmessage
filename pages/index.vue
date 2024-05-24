@@ -1,4 +1,8 @@
 <script setup>
+
+const dialog = () => {
+    alert('Not available yet')
+}
 </script>
 
 <template>
@@ -17,7 +21,7 @@
             </NuxtLink>
         </section>
         <section id="bottom-section" class="flex flex-col items-center gap-20">
-            <div class="w-[250px] h-[150px]  mt-20 bg-white rounded-xl flex flex-col justify-between px-5 py-3">
+            <div class="w-[250px] h-[150px]  mt-20 bg-white rounded-xl flex flex-col justify-between px-5 py-3  shadow">
                 <div class="space-y-2 text-[#1F000A]">
                     <p class="font-[Poppins] text-[14px] font-bold">Anonymous</p>
                     <p class="font-[Arimo] text-[13px]">Hi, just wanted to say thanks for being a good friend. Means a
@@ -26,9 +30,16 @@
                 </div>
                 <p class="font-[Arimo] text-[13px] self-end text-[#474747]">Yesterday</p>
             </div>
-            <button class="bg-[#FED471] text-[#1F000A] px-5 py-2 w-[120px] font-[Arimo] text-[12px] rounded-md">
+            <div>
+                <p>1. Sign up</p>
+                <p>2. Share link</p>
+                <p>3. Recieve messages</p>
+            </div>
+            <button @click="dialog"
+                class="bg-[#FED471] text-[#1F000A] px-5 py-2 w-[120px] font-[Arimo] text-[12px] rounded-md">
                 View analytics
             </button>
         </section>
+        <FooterComp />
     </div>
 </template>

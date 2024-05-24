@@ -2,11 +2,23 @@
 import useProfile from '~/composables/useProfile';
 
 const auth = useAuth()
-const copyLink = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/message?id=${profile.value?.id}`)
-    alert("copied")
-}
+const config = useRuntimeConfig().public
+
 const profile = await useProfile()
+
+const copyLink = () => {
+    if (navigator.share) {
+        navigator.share({
+            text: `Send ${profile.value?.username} a message`,
+            url: `${config.appUrl}/message?id=${profile.value?.id}`,
+            title: "Unnon Message",
+        })
+
+    } else {
+        navigator.clipboard.writeText(`${config.appUrl}/message?id=${profile.value?.id}`)
+        alert("copied")
+    }
+}
 
 </script>
 

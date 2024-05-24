@@ -16,13 +16,20 @@ const createMessage = async () => {
         const data = await $fetch("/api/message/create", {
             method: "POST",
             body: {
-                id: query.id,
+                id: query?.id,
                 message: textAreaRef.value
             }
         })
-        console.log("from message", data)
+        if (!useAuth().loggedIn) {
+            textAreaRef.value = "Message sent. Please login to see your messages."
+            setTimeout(() => {
+                navigateTo("/")
+            }, 2000)
+        }
+        textAreaRef.value = ''
+        alert(data)
     } catch (error) {
-        console.log("from message", error)
+        alert(error)
     }
     loading.value = false
 }
@@ -31,9 +38,9 @@ const createMessage = async () => {
 
 <template>
     <div class="flex flex-col items-center gap-5 w-fit mx-auto mt-20">
-        <div class="flex flex-col bg-white w-[260px] pb-3 rounded-md focus-visible:outline-none ">
+        <div class="flex flex-col bg-white w-[260px] pb-3 rounded-md focus-visible:outline-none shadow-md ">
             <textarea v-model="textAreaRef" name="" id="" cols="30" rows="10" placeholder="Enter your message"
-                class="rounded-md py-5 px-4 w-[260px] h-[190px] resize-none focus:outline-none font-[Arimo] text-base text-[#1F000A]">What yu say</textarea>
+                class="rounded-md py-5 px-4 w-[260px] h-[190px] resize-none focus:outline-none font-[Arimo] text-base text-[#1F000A]"></textarea>
             <p class="self-end mr-3 font-[Arimo] text-[13px] text-[#474747]">{{ textAreaRef.length }} / 250</p>
         </div>
         <button :disabled="loading" @click="createMessage"

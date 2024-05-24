@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@libsql/client": "^0.6.0",
-    "@logto/nuxt": "^0.1.11",
     "@nuxt/fonts": "^0.7.0",
     "@nuxtjs/kinde": "^0.1.10",
     "@nuxtjs/tailwindcss": "^6.12.0",
